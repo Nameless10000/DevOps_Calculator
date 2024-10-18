@@ -1,3 +1,4 @@
+using Calculator.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Data;
@@ -11,10 +12,10 @@ namespace Calculator.Controllers
     {
 
         [HttpPost]
-        public double CalculateExpression([FromBody] string expression) 
+        public JsonResult CalculateExpression([FromBody] InputDto data) 
         {
             var dt = new DataTable();
-            return Convert.ToDouble(dt.Compute(expression, ""));
+            return new(new {Result = Convert.ToDouble(dt.Compute(data.Expression, ""))});
         }
 
         [HttpGet]
