@@ -6,7 +6,7 @@ using System.Data;
 namespace Calculator.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]/[action]")]
     public class WeatherForecastController : ControllerBase
     {
 
@@ -15,6 +15,12 @@ namespace Calculator.Controllers
         {
             var dt = new DataTable();
             return Convert.ToDouble(dt.Compute(expression, ""));
+        }
+
+        [HttpGet]
+        public double GetNums()
+        {
+            return 6;
         }
 
     }
