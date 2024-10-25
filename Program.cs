@@ -19,7 +19,6 @@ builder.Services.AddSwaggerGen();
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();     
 builder.Logging.AddDebug();
-builder.Logging.AddEventLog();
 
 var app = builder.Build();
 
