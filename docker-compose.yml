@@ -4,7 +4,7 @@ services:
   web:
     container_name: web-app-calculator
     hostname: app
-    build: /.
+    build: /
     ports:
       - "5003:5003"
     depends_on:
