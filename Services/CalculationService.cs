@@ -8,12 +8,12 @@ namespace _3_Calculator.Services
     public class CalculationService
     {
         private readonly MainDbContext _dbContext;
-        private readonly ILogger _logger;
+        /*private readonly ILogger _logger;*/
 
-        public CalculationService(MainDbContext dbContext, ILogger<CalculationService> logger)
+        public CalculationService(MainDbContext dbContext/*, ILogger<CalculationService> logger*/)
         {
             _dbContext = dbContext;
-            _logger = logger;
+            /*_logger = logger;*/
         }
 
         public async Task<double> CalculateExpression(InputDto inputData)
@@ -22,7 +22,7 @@ namespace _3_Calculator.Services
 
             if (prevResult != null)
             {
-                _logger.LogInformation($"Evaluated expression was found in database.");
+                Console.WriteLine($"Evaluated expression was found in database.");
                 return prevResult.Result;
             }
 
@@ -38,7 +38,7 @@ namespace _3_Calculator.Services
             await _dbContext.CalculationResults.AddAsync(newCalc);
             await _dbContext.SaveChangesAsync();
 
-            _logger.LogInformation($"Expression {inputData.Expression} evaluated {result}");
+            Console.WriteLine($"Expression {inputData.Expression} evaluated {result}");
 
             return result;
         } 
