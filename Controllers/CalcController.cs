@@ -1,22 +1,27 @@
-using Calculator.Models;
+using _3_Calculator.Models;
+using _3_Calculator.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Data;
 
 
-namespace Calculator.Controllers
+namespace _3_Calculator.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
     public class CalcController : ControllerBase
     {
+        private readonly CalculationService _calculationService;
 
-        [HttpPost]
-        public JsonResult CalculateExpression([FromBody] InputDto data) 
+        public CalcController(CalculationService calculationService)
         {
-            var dt = new DataTable();
-            return new(new {Result = Convert.ToDouble(dt.Compute(data.Expression, ""))});
+            _calculationService = calculationService;
         }
 
+        [HttpPost]
+        public async Task<JsonResult> CalculateExpression([FromBody] InputDto data) 
+        {
+            return new(new { Result = await _calculationService.CalculateExpression(data) });
+        }
     }
 }

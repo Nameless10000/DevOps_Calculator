@@ -5,9 +5,7 @@ namespace _3_Calculator
 {
     public class MainDbContext : DbContext
     {
-        public MainDbContext(DbContextOptions opts) : base(opts)
-        {
-        }
+        public MainDbContext(DbContextOptions opts) : base(opts) { }
 
         public DbSet<CalculationResult> CalculationResults { get; set; }
 
