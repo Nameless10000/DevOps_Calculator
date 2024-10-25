@@ -1,0 +1,31 @@
+﻿version: '3.7'
+
+services:
+  web:
+    container_name: web-app-calculator
+    hostname: app
+    build: DevOps_Calculator/
+    ports:
+      - "5003:5003"
+    depends_on:
+      - mariadb
+    networks:
+      - calculator-network
+
+  mariadb:
+    container_name: web-mariadb
+    hostname: mariadb
+    image: mariadb:10.5
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+      MARIADB_DATABASE: calculator_3_db
+      MARIADB_USER: root
+      MARIADB_PASSWORD: password
+    ports:
+      - "3306:3306"
+    networks:
+      - calculator-network
+
+networks:
+  calculator-network:
+    driver: bridge
