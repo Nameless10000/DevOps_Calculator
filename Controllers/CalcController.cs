@@ -8,7 +8,7 @@ namespace Calculator.Controllers
 {
     [ApiController]
     [Route("[controller]/[action]")]
-    public class WeatherForecastController : ControllerBase
+    public class CalcController : ControllerBase
     {
 
         [HttpPost]
@@ -16,12 +16,6 @@ namespace Calculator.Controllers
         {
             var dt = new DataTable();
             return new(new {Result = Convert.ToDouble(dt.Compute(data.Expression, ""))});
-        }
-
-        [HttpGet]
-        public double GetNums()
-        {
-            return 6;
         }
 
     }
