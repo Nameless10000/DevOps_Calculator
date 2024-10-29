@@ -14,8 +14,8 @@ services:
     image: mariadb:10.5
     environment:
       MARIADB_ROOT_PASSWORD: password
-      MARIADB_DATABASE: calculator_3_db
+      MARIADB_DATABASE: 3_WebCalculatorDB
       MARIADB_USER: root
       MARIADB_PASSWORD: password
     ports:
-      - "0.0.0.0:3306:3306"
+      - "0.0.0.0:5023:3306"

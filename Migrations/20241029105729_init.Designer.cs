@@ -10,8 +10,8 @@ using _3_Calculator;
 namespace _3_Calculator.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    [Migration("20241025142009_Init")]
-    partial class Init
+    [Migration("20241029105729_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
