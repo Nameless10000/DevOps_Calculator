@@ -11,11 +11,11 @@ services:
   mariadb:
     container_name: web-mariadb
     hostname: mariadb
-    image: mariadb:10.5
+    image: mariadb:11.2
     environment:
       MARIADB_ROOT_PASSWORD: password
       MARIADB_DATABASE: 3_WebCalculatorDB
       MARIADB_USER: root
       MARIADB_PASSWORD: password
     ports:
-      - "0.0.0.0:5033:3306"
+      - "0.0.0.0:5023:3306"
