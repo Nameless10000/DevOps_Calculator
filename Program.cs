@@ -1,15 +1,22 @@
 using _3_Calculator;
+using _3_Calculator.Kafka;
 using _3_Calculator.Services;
+using Confluent.Kafka;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddTransient<CalculationService>();
-
 var connStr = builder.Configuration.GetConnectionString("MainConnection");
 builder.Services.AddDbContext<MainDbContext>(opt => opt.UseMySql(connStr, new MySqlServerVersion(new Version(10, 5))));
+
+builder.Services.AddTransient<CalculationService>();
+
+builder.Services.AddHostedService<KafkaConsumerService>();
+builder.Services.AddSingleton<KafkaProducerHandler>();
+builder.Services.AddSingleton<KafkaProducerService<Null, string>>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -1,3 +1,4 @@
+using _3_Calculator.Entities;
 using _3_Calculator.Models;
 using _3_Calculator.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -19,9 +20,24 @@ namespace _3_Calculator.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> CalculateExpression([FromBody] InputDto data) 
+        public async Task<IActionResult> CalculateExpression([FromBody] InputDto data) 
         {
-            return new(new { Result = await _calculationService.CalculateExpression(data) });
+            await _calculationService.SendToKafkaAsync(data);
+
+            return RedirectToAction(nameof(GetCalculatedOperations));
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetCalculatedOperations()
+        {
+            return new(new { LastCalculations = await _calculationService.GetTopAsync() });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CallBack([FromBody] CalculationResult calculationResult)
+        {
+            await _calculationService.SaveCalculationAsync(calculationResult);
+            return Ok();
         }
     }
 }
