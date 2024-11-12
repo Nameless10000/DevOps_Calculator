@@ -24,6 +24,7 @@ namespace _3_Calculator.Services
             return await _dbContext
                 .CalculationResults
                 .OrderByDescending(x => x.ID)
+                .Take(5)
                 .ToListAsync();
         }
 
