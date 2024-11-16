@@ -27,8 +27,8 @@ namespace _3_Calculator.Controllers
             return new(new { LastCalculations = await _calculationService.GetTopAsync() });
         }
 
-        [HttpGet]
-        public async Task<JsonResult> CalculateExpreesionLegacy([FromBody] InputDto data)
+        [HttpPost]
+        public async Task<JsonResult> CalculateExpressionLegacy([FromBody] InputDto data)
         {
             return new( new { Result = await _calculationService.CalculateExpressionAsync(data) });
         }
