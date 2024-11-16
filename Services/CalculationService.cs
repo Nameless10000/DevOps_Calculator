@@ -40,7 +40,7 @@ namespace _3_Calculator.Services
             await _dbContext.SaveChangesAsync();
         }
 
-        /*public async Task<double> CalculateExpressionAsync(InputDto inputData)
+        public async Task<double> CalculateExpressionAsync(InputDto inputData)
         {
             var prevResult = await _dbContext
                 .CalculationResults
@@ -60,10 +60,10 @@ namespace _3_Calculator.Services
                 Result = result,
             };
 
-            *//*await _dbContext.CalculationResults.AddAsync(newCalc);
-            await _dbContext.SaveChangesAsync();*//*
+            await _dbContext.CalculationResults.AddAsync(newCalc);
+            await _dbContext.SaveChangesAsync();
 
             return result;
-        } */
+        }
     }
 }

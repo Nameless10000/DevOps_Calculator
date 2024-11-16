@@ -20,17 +20,17 @@ namespace _3_Calculator.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CalculateExpression([FromBody] InputDto data) 
+        public async Task<JsonResult> CalculateExpression([FromBody] InputDto data) 
         {
             await _calculationService.SendToKafkaAsync(data);
 
-            return RedirectToAction(nameof(GetCalculatedOperations));
+            return new(new { LastCalculations = await _calculationService.GetTopAsync() });
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetCalculatedOperations()
+        public async Task<JsonResult> CalculateExpreesionLegacy([FromBody] InputDto data)
         {
-            return new(new { LastCalculations = await _calculationService.GetTopAsync() });
+            return new( new { Result = await _calculationService.CalculateExpressionAsync(data) });
         }
 
         [HttpPost]
