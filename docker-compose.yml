@@ -2,7 +2,7 @@ version: '3.7'
 
 services:     
   web:
-    container_name: web-app-calculator-jenkins-03
+    container_name: web-app-calculator-prometheus-03
     hostname: app
     build: ./
     ports:
