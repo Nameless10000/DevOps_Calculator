@@ -1,6 +1,5 @@
 using OpenTelemetry.Metrics;
 using Prometheus;
-using static System.Net.WebRequestMethods;
 
 var builder = WebApplication.CreateBuilder(args);
 
