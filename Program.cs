@@ -45,10 +45,10 @@ if (app.Environment.IsDevelopment())
 app.UseRouting();
 
 
-app.UseEndpoints(endpoints =>
+/*app.UseEndpoints(endpoints =>
 {
     endpoints.MapMetrics(); // Создает конечную точку для метрик на /metrics
-});
+});*/
 
 app.MapPrometheusScrapingEndpoint();
 
